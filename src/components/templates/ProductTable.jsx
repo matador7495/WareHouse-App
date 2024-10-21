@@ -1,6 +1,11 @@
+import { useQuery } from "@tanstack/react-query";
+import { productsQuery } from "services/productsQuery";
+
 import styles from "./ProductTable.module.css";
 
 function ProductTable() {
+  const { data: products } = useQuery({ queryKey: ["products"], queryFn: productsQuery.getProducts });
+
   return (
     <div className={styles.products_container}>
       <div className={styles.products_navbar}>
@@ -33,58 +38,19 @@ function ProductTable() {
             <th></th>
           </tr>
         </thead>
-
         <tbody>
-          <tr>
-            <td>تیشرت طرح انگولار</td>
-            <td>۲۹۳</td>
-            <td>90 هزار تومان</td>
-            <td colSpan="2">90uf9g9h7895467g974</td>
-            <td>
-              <img src="edit.svg" alt="ویرایش" style={{ marginLeft: "14px" }} />
-              <img src="trash.svg" alt="حذف" />
-            </td>
-          </tr>
-          <tr>
-            <td>تیشرت طرح انگولار</td>
-            <td>۲۹۳</td>
-            <td>90 هزار تومان</td>
-            <td colSpan="2">90uf9g9h7895467g974</td>
-            <td>
-              <img src="edit.svg" alt="ویرایش" style={{ marginLeft: "14px" }} />
-              <img src="trash.svg" alt="حذف" />
-            </td>
-          </tr>
-          <tr>
-            <td>تیشرت طرح انگولار</td>
-            <td>۲۹۳</td>
-            <td>90 هزار تومان</td>
-            <td colSpan="2">90uf9g9h7895467g974</td>
-            <td>
-              <img src="edit.svg" alt="ویرایش" style={{ marginLeft: "14px" }} />
-              <img src="trash.svg" alt="حذف" />
-            </td>
-          </tr>
-          <tr>
-            <td>تیشرت طرح انگولار</td>
-            <td>۲۹۳</td>
-            <td>90 هزار تومان</td>
-            <td colSpan="2">90uf9g9h7895467g974</td>
-            <td>
-              <img src="edit.svg" alt="ویرایش" style={{ marginLeft: "14px" }} />
-              <img src="trash.svg" alt="حذف" />
-            </td>
-          </tr>
-          <tr>
-            <td>تیشرت طرح انگولار</td>
-            <td>۲۹۳</td>
-            <td>90 هزار تومان</td>
-            <td colSpan="2">90uf9g9h7895467g974</td>
-            <td>
-              <img src="edit.svg" alt="ویرایش" style={{ marginLeft: "14px" }} />
-              <img src="trash.svg" alt="حذف" />
-            </td>
-          </tr>
+          {products?.data.data.map((product) => (
+            <tr key={product.id}>
+              <td>{product.name}</td>
+              <td>{product.quantity}</td>
+              <td>{product.price} هزار تومان</td>
+              <td colSpan="2">{product.id}</td>
+              <td>
+                <img src="edit.svg" alt="ویرایش" style={{ marginLeft: "14px" }} />
+                <img src="trash.svg" alt="حذف" />
+              </td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>
