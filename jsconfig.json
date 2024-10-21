@@ -8,6 +8,7 @@
       "constants/*": ["constants/*"],
       "layouts/*": ["layouts/*"],
       "pages/*": ["pages/*"],
+      "providers/*": ["providers/*"],
       "router/*": ["router/*"],
       "services/*": ["services/*"],
       "utils/*": ["utils/*"]
