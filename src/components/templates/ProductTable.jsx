@@ -8,6 +8,7 @@ import styles from "./ProductTable.module.css";
 
 function ProductTable() {
   const [search, setSearch] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const debouncedSearch = useDebounce(search, 500);
 
   const { data: products } = useQuery({
@@ -17,7 +18,7 @@ function ProductTable() {
 
   return (
     <>
-      <ProductForm />
+      {isModalOpen && <ProductForm setIsModalOpen={setIsModalOpen} />}
       <div className={styles.products_container}>
         <div className={styles.products_navbar}>
           <div className={styles.search_box}>
@@ -37,7 +38,7 @@ function ProductTable() {
             <img src="setting.svg" alt="setting" />
             <span>مدیریت کالا</span>
           </div>
-          <button>افزودن محصول</button>
+          <button onClick={() => setIsModalOpen(true)}>افزودن محصول</button>
         </div>
         <table className={styles.products_table}>
           <thead>

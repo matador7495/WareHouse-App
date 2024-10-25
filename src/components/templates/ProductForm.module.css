@@ -1,0 +1,93 @@
+.form_backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #3333337d;
+  backdrop-filter: blur(10px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 0.4s ease-in-out;
+}
+.product_form {
+  width: 460px;
+  height: 448px;
+  border-radius: 30px;
+  background-color: var(--white-color);
+  padding: 30px 36px;
+}
+.product_form h3 {
+  color: var(--black-color);
+  text-align: center;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 31.25px;
+}
+.product_form .form_fields {
+  display: flex;
+  flex-direction: column;
+  margin-top: 30px;
+}
+.product_form .form_fields label {
+  color: var(--black-color);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 21.88px;
+}
+.product_form .form_fields input {
+  background-color: var(--secondary-color);
+  padding: 10px;
+  border-radius: 8px;
+  border: 2px dotted transparent;
+  color: #8d8d8d;
+  font-size: 14px;
+  line-height: 21.88px;
+  font-weight: 300;
+  margin: 6px 0 16px;
+}
+.product_form .form_fields input:focus {
+  outline: none;
+  border-color: var(--main-color);
+}
+.product_form .form_buttons button {
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  width: 185px;
+  height: 42px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 21.88px;
+  margin-top: 24px;
+  cursor: pointer;
+}
+.product_form .form_buttons button:first-child {
+  background-color: var(--main-color);
+  color: var(--white-color);
+  margin-left: 18px;
+}
+.product_form .form_buttons button:last-child {
+  background-color: #dfdfdf;
+  color: #282828cc;
+}
+
+input[type="number"] {
+  -webkit-appearance: textfield;
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

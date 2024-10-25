@@ -2,7 +2,9 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { productsQuery } from "services/productsQuery";
 import useFormFields from "hooks/useFormFields";
 
-function ProductForm() {
+import styles from "./ProductForm.module.css";
+
+function ProductForm({ setIsModalOpen }) {
   const queryClient = useQueryClient();
 
   const [formData, handleChange] = useFormFields({
@@ -17,6 +19,7 @@ function ProductForm() {
     mutationFn: productsQuery.createProduct,
     onSuccess: () => {
       console.log("success");
+      setIsModalOpen(false);
       queryClient.invalidateQueries({ queryKey: ["products"] });
     },
     onError: (error) => {
@@ -38,25 +41,27 @@ function ProductForm() {
   };
 
   return (
-    <form onChange={handleChange}>
-      <div>
+    <div className={styles.form_backdrop}>
+      <form onSubmit={handleSubmit} onChange={handleChange} className={styles.product_form}>
         <h3>ایجاد محصول جدید</h3>
-        <div>
+        <div className={styles.form_fields}>
           <label htmlFor="name">نام کالا</label>
           <input type="text" name="name" placeholder="نام کالا را وارد کنید" />
 
           <label htmlFor="quantity">تعداد موجودی</label>
-          <input type="number" name="quantity" placeholder="تعداد موجودی را وارد کنید" />
+          <input type="number" name="quantity" min="0" placeholder="تعداد موجودی را وارد کنید" />
 
           <label htmlFor="price">قیمت</label>
-          <input type="number" name="price" placeholder="قیمت را وارد کنید" />
+          <input type="number" name="price" min="0" placeholder="قیمت را وارد کنید" />
         </div>
-        <div>
-          <button onClick={handleSubmit}>ایجاد</button>
-          <button>انصراف</button>
+        <div className={styles.form_buttons}>
+          <button type="submit">ایجاد</button>
+          <button type="button" onClick={() => setIsModalOpen(false)}>
+            انصراف
+          </button>
         </div>
-      </div>
-    </form>
+      </form>
+    </div>
   );
 }
 
