@@ -1,7 +1,7 @@
 import api from "configs/apiConfig";
 
 export const productsQuery = {
-  getProducts: () => api.get("/products"),
+  getProducts: (params) => api.get("/products", { params }), 
 
   getProduct: (id) => api.get(`/products/${id}`),
 

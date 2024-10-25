@@ -1,17 +1,25 @@
+import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { productsQuery } from "services/productsQuery";
+import useDebounce from "hooks/useDebounce";
 
 import styles from "./ProductTable.module.css";
 
 function ProductTable() {
-  const { data: products } = useQuery({ queryKey: ["products"], queryFn: productsQuery.getProducts });
+  const [search, setSearch] = useState("");
+  const debouncedSearch = useDebounce(search, 500);
+
+  const { data: products } = useQuery({
+    queryKey: ["products", debouncedSearch],
+    queryFn: () => productsQuery.getProducts({ name: debouncedSearch || undefined }),
+  });
 
   return (
     <div className={styles.products_container}>
       <div className={styles.products_navbar}>
         <div className={styles.search_box}>
           <img src="search.svg" alt="search" />
-          <input type="text" placeholder="جستجو کالا" />
+          <input type="text" placeholder="جستجو کالا" value={search} onChange={(e) => setSearch(e.target.value)} />
         </div>
         <div className={styles.profile_info}>
           <img src="profile.jpg" alt="profile" />

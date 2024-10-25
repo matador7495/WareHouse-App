@@ -6,6 +6,7 @@
       "components/*": ["components/*"],
       "configs/*": ["configs/*"],
       "constants/*": ["constants/*"],
+      "hooks/*": ["hooks/*"],
       "layouts/*": ["layouts/*"],
       "pages/*": ["pages/*"],
       "providers/*": ["providers/*"],
