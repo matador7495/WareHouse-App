@@ -1,10 +1,11 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { productsQuery } from "services/productsQuery";
 import useFormFields from "hooks/useFormFields";
+import { Modal } from "./Modal";
 
-import styles from "./ProductForm.module.css";
+import styles from "./ProductFormModal.module.css";
 
-function ProductForm({ setIsModalOpen }) {
+function ProductFormModal({ isOpen, onClose }) {
   const queryClient = useQueryClient();
 
   const [formData, handleChange] = useFormFields({
@@ -19,7 +20,7 @@ function ProductForm({ setIsModalOpen }) {
     mutationFn: productsQuery.createProduct,
     onSuccess: () => {
       console.log("success");
-      setIsModalOpen(false);
+      onClose();
       queryClient.invalidateQueries({ queryKey: ["products"] });
     },
     onError: (error) => {
@@ -41,7 +42,7 @@ function ProductForm({ setIsModalOpen }) {
   };
 
   return (
-    <div className={styles.form_backdrop}>
+    <Modal isOpen={isOpen} onClose={onClose}>
       <form onSubmit={handleSubmit} onChange={handleChange} className={styles.product_form}>
         <h3>ایجاد محصول جدید</h3>
         <div className={styles.form_fields}>
@@ -56,13 +57,13 @@ function ProductForm({ setIsModalOpen }) {
         </div>
         <div className={styles.form_buttons}>
           <button type="submit">ایجاد</button>
-          <button type="button" onClick={() => setIsModalOpen(false)}>
+          <button type="button" onClick={onClose}>
             انصراف
           </button>
         </div>
       </form>
-    </div>
+    </Modal>
   );
 }
 
-export default ProductForm;
+export default ProductFormModal;

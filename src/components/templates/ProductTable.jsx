@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { productsQuery } from "services/productsQuery";
 import useDebounce from "hooks/useDebounce";
-import ProductForm from "./ProductForm";
+import ProductFormModal from "components/Modal/ProductFormModal";
 
 import styles from "./ProductTable.module.css";
 
@@ -18,7 +18,7 @@ function ProductTable() {
 
   return (
     <>
-      {isModalOpen && <ProductForm setIsModalOpen={setIsModalOpen} />}
+      <ProductFormModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
       <div className={styles.products_container}>
         <div className={styles.products_navbar}>
           <div className={styles.search_box}>
