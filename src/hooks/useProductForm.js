@@ -1,8 +1,8 @@
-// src/hooks/useProductForm.js
 import { useEffect } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { productsQuery } from "services/productsQuery";
 import useFormFields from "./useFormFields";
+import notifications from "utils/toastNotifications";
 
 export function useProductForm(productId, onClose) {
   const queryClient = useQueryClient();
@@ -25,11 +25,12 @@ export function useProductForm(productId, onClose) {
   const { mutate, isLoading: isSaving } = useMutation({
     mutationFn: isEditMode ? productsQuery.updateProduct : productsQuery.createProduct,
     onSuccess: () => {
+      isEditMode ? notifications("UPDATE") : notifications("CREATE");
       queryClient.invalidateQueries({ queryKey: ["products"] });
       onClose();
     },
     onError: (error) => {
-      console.log("error", error);
+      notifications("ERROR", error);
     },
   });
 

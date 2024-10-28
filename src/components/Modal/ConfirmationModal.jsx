@@ -1,6 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { productsQuery } from "services/productsQuery";
 
+import notifications from "utils/toastNotifications";
 import styles from "./ConfirmationModal.module.css";
 
 function ConfirmationModal({ onClose, productId }) {
@@ -9,9 +10,12 @@ function ConfirmationModal({ onClose, productId }) {
   const { mutate } = useMutation({
     mutationFn: productsQuery.deleteProduct,
     onSuccess: () => {
-      console.log("success");
+      notifications("DELETE");
       queryClient.invalidateQueries({ queryKey: ["products"] });
       onClose();
+    },
+    onError: (error) => {
+      notifications("ERROR", error);
     },
   });
 
