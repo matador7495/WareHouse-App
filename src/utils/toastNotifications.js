@@ -1,6 +1,6 @@
 import toast from "react-hot-toast";
 
-const notifications = (type, obj_error) => {
+const notifications = (type, msg) => {
   switch (type) {
     case "CREATE":
       toast.success("محصول با موفقیت اضافه شد");
@@ -12,13 +12,12 @@ const notifications = (type, obj_error) => {
       toast.success("محصول با موفقیت حذف شد");
       break;
     case "ERROR":
-      toast.error(
-        `مشکلی پیش آمد، لطفا مجددا تلاش کنید \n \n message: ${obj_error.message} - ${obj_error.response.statusText} / code: ${obj_error.code} `,
-        { duration: 5000 }
-      );
+      toast.error(`مشکلی پیش آمد، لطفا مجددا تلاش کنید \n \n message: ${msg.message} - ${msg.response.statusText} / code: ${msg.code} `, {
+        duration: 5000,
+      });
       break;
     default:
-      toast.error("مشکلی پیش آمد، لطفا مجددا تلاش کنید");
+      toast[type](msg);
   }
 };
 

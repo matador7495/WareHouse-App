@@ -39,7 +39,7 @@ export function useProductForm(productId, onClose) {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    if (!formData.name || !formData.quantity || !formData.price) console.log("Please fill all fields");
+    if (!formData.name || !formData.quantity || !formData.price) return notifications("error", "لطفا تمام فیلدها را پر کنید");
 
     mutate({
       id: productData?.id,
