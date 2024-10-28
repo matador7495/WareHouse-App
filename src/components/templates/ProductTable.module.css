@@ -45,11 +45,11 @@
   flex-direction: column;
 }
 .profile_info p {
-  font-size: 16px;
+  font-size: var(--font-16);
   color: var(--black-color);
 }
 .profile_info span {
-  font-size: 14px;
+  font-size: var(--font-14);
   font-weight: 300;
 }
 /* products header */
@@ -64,8 +64,7 @@
 }
 .products_header span {
   margin-right: 6px;
-  font-size: 1.5rem;
-  vertical-align: auto;
+  font-size: var(--font-24);
 }
 .products_header button {
   background-color: var(--main-color);
@@ -95,14 +94,14 @@
   background-color: var(--secondary-color);
   color: var(--black-color);
   height: 70px;
-  font-size: 14px;
+  font-size: var(--font-14);
   font-weight: 500;
 }
 .products_table tbody {
   background-color: var(--white-color);
   display: block;
   min-height: 500px;
-  font-size: 12px;
+  font-size: var(--font-12);
 }
 .products_table tbody tr {
   height: 50px;

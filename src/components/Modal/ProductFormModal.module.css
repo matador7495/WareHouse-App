@@ -8,7 +8,7 @@
 .product_form h3 {
   color: var(--black-color);
   text-align: center;
-  font-size: 20px;
+  font-size: var(--font-20);
   font-weight: 500;
   line-height: 31.25px;
 }
@@ -19,7 +19,7 @@
 }
 .product_form .form_fields label {
   color: var(--black-color);
-  font-size: 14px;
+  font-size: var(--font-14);
   font-weight: 500;
   line-height: 21.88px;
 }
@@ -29,7 +29,7 @@
   border-radius: 8px;
   border: 2px dotted transparent;
   color: #8d8d8d;
-  font-size: 14px;
+  font-size: var(--font-14);
   line-height: 21.88px;
   font-weight: 300;
   margin: 6px 0 16px;
@@ -44,7 +44,7 @@
   border: none;
   width: 185px;
   height: 42px;
-  font-size: 14px;
+  font-size: var(--font-14);
   font-weight: 500;
   line-height: 21.88px;
   margin-top: 24px;
