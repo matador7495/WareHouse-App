@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { productsQuery } from "services/productsQuery";
 import useDebounce from "hooks/useDebounce";
+import { e2p, sp } from "utils/replaceNumber";
 import { Modal } from "components/Modal/Modal";
 import ProductFormModal from "components/Modal/ProductFormModal";
 import ConfirmationModal from "components/Modal/ConfirmationModal";
@@ -29,7 +30,7 @@ function ProductTable() {
   for (let i = 1; i <= products?.data.totalPages; i++) {
     paginationButtons.push(
       <button key={i} onClick={() => setPagination(i)} className={products?.data.page === i ? styles.active : ""}>
-        {i}
+        {e2p(i)}
       </button>
     );
   }
@@ -72,7 +73,7 @@ function ProductTable() {
           </div>
         </div>
 
-        {<p className={styles.search_error}>{search && search.length < 3 ? "* لطفاً حداقل 3 کاراکتر وارد کنید." : ""}</p>}
+        {<p className={styles.search_error}>{search && search.length < 3 ? "* لطفاً حداقل ۳ کاراکتر وارد کنید." : ""}</p>}
 
         <div className={styles.products_header}>
           <div>
@@ -95,9 +96,9 @@ function ProductTable() {
             {products?.data.data.map((product) => (
               <tr key={product.id}>
                 <td>{product.name}</td>
-                <td>{product.quantity}</td>
-                <td>{product.price} هزار تومان</td>
-                <td colSpan="2">{product.id}</td>
+                <td>{sp(product.quantity)}</td>
+                <td>{sp(product.price)} تومان</td>
+                <td colSpan="2">{e2p(product.id)}</td>
                 <td>
                   <img src="edit.svg" alt="ویرایش" style={{ marginLeft: "14px" }} onClick={() => openModalHandler("edit", product.id)} />
                   <img src="trash.svg" alt="حذف" onClick={() => openModalHandler("delete", product.id)} />
