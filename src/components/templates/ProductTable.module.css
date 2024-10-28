@@ -9,7 +9,7 @@
   height: 68px;
   border-radius: 16px;
   border: 1px solid #e4e4e4;
-  margin: 20px 0 40px;
+  margin: 20px 0 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -52,12 +52,17 @@
   font-size: var(--font-14);
   font-weight: 300;
 }
+.search_error {
+  height: 20px;
+  color: #f43f5e;
+  font-size: var(--font-12);
+}
 /* products header */
 .products_header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
+  margin: 20px 0 10px;
 }
 .products_header div {
   display: flex;
@@ -89,6 +94,7 @@
   overflow: hidden;
   text-align: right;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  margin-bottom: 32px;
 }
 .products_table thead th {
   background-color: var(--secondary-color);
@@ -119,4 +125,29 @@
   display: table;
   width: 100%;
   table-layout: fixed;
+}
+.no_products {
+  text-align: center !important;
+  font-size: var(--font-20);
+  color: #f43f5e;
+}
+/* pagination */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.pagination button {
+  width: 35px;
+  height: 35px;
+  border-radius: 42px;
+  border: 2px solid #8d8d8d80;
+  margin-left: 14px;
+  color: #8d8d8d80;
+  cursor: pointer;
+}
+.pagination .active {
+  border: none;
+  background-color: var(--main-color);
+  color: var(--white-color);
 }
