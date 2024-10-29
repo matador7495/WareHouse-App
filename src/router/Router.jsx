@@ -1,9 +1,9 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
+import SmartRoute from "./SmartRoute";
 import AdminPage from "pages/AdminPage";
 import LoginPage from "pages/LoginPage";
-import SmartRoute from "./SmartRoute";
-import RegisterForm from "components/templates/RegisterForm";
+import RegisterPage from "pages/RegisterPage";
 
 function Router() {
   return (
@@ -25,7 +25,14 @@ function Router() {
             </SmartRoute>
           }
         />
-        <Route path="/register" element={<RegisterForm />} />
+        <Route
+          path="/register"
+          element={
+            <SmartRoute requiresAuth={false}>
+              <RegisterPage />
+            </SmartRoute>
+          }
+        />
       </Routes>
     </BrowserRouter>
   );
