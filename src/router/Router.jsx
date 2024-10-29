@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import AdminPage from "pages/AdminPage";
 import LoginPage from "pages/LoginPage";
 import SmartRoute from "./SmartRoute";
+import RegisterForm from "components/templates/RegisterForm";
 
 function Router() {
   return (
@@ -24,6 +25,7 @@ function Router() {
             </SmartRoute>
           }
         />
+        <Route path="/register" element={<RegisterForm />} />
       </Routes>
     </BrowserRouter>
   );

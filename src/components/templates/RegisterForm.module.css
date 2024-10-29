@@ -1,0 +1,80 @@
+.login_page_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.login_page_container h1 {
+  color: var(--black-color);
+  font-size: var(--font-24);
+  line-height: 34.66px;
+  font-weight: 700;
+  margin: 10vh;
+}
+.login_page_form {
+  width: 470px;
+  height: auto;
+  background-color: var(--white-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 40px;
+  border: 1px solid #e4e4e4;
+}
+.form_logo img {
+  margin-top: 51px;
+}
+.form_logo h3 {
+  font-size: var(--font-24);
+  font-weight: 500;
+  line-height: 37.5px;
+  color: var(--black-color);
+  margin: 16px 0 63px;
+}
+.form_fields {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.form_fields input {
+  background-color: var(--secondary-color);
+  border-radius: 15px;
+  width: 400px;
+  height: 53px;
+  border: 2px dotted transparent;
+  padding: 22px 15px;
+  font-size: 1rem;
+  color: var(--black-color);
+}
+.form_fields input:focus {
+  outline: none;
+  border-color: var(--main-color);
+}
+.form_fields button {
+  width: 400px;
+  height: 53px;
+  border-radius: 15px;
+  background-color: var(--main-color);
+  color: var(--white-color);
+  border: none;
+  margin-top: 20px;
+  font-size: var(--font-20);
+  font-weight: 600;
+  line-height: 31.25px;
+  cursor: pointer;
+  transition: all 0.4s ease;
+}
+.form_fields button:hover {
+  background-color: #0f87ff;
+}
+.register_link {
+  text-align: right;
+  margin-bottom: 15px;
+  color: #3a8bed;
+  font-size: 1rem;
+}
+@media (max-width: 1600px) {
+  .login_page_container h1 {
+    margin: 2vh auto 4vh;
+  }
+}
