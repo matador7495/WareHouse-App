@@ -4,18 +4,27 @@ import { productsQuery } from "services/productsQuery";
 import notifications from "utils/toastNotifications";
 import styles from "./ConfirmationModal.module.css";
 
-function ConfirmationModal({ onClose, productId }) {
+function ConfirmationModal({ onClose, productId, setSearch, setPagination }) {
   const queryClient = useQueryClient();
 
   const { mutate } = useMutation({
     mutationFn: productsQuery.deleteProduct,
-    onSuccess: () => {
+    onSuccess: (data) => {
       notifications("DELETE");
+      if (data.statusText === "No Content") {
+        setSearch("");
+        setPagination(1);
+      }
       queryClient.invalidateQueries({ queryKey: ["products"] });
+
       onClose();
     },
-    onError: (error) => {
-      notifications("ERROR", error);
+    onError: (error) => {      
+      if (error.response.statusText === "Unauthorized") {
+        notifications("error", "شما مجوز حذف این محصول را ندارید - \n مجددا وارد شوید!");
+      } else {
+        notifications("ERROR", error);
+      }
     },
   });
 

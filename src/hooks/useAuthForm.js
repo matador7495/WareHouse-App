@@ -21,10 +21,15 @@ const useAuthForm = ({ type, authService, defaultValues, redirectPath }) => {
       navigate(redirectPath);
     },
     onError: (error) => {
+      if (error.response.statusText === "Unauthorized") {
+        notifications("error", "شما مجوز حذف این محصول را ندارید - \n مجددا وارد شوید!");
+      }
       if (error.response.data.message === "Invalid credentials") {
         notifications("error", "نام کاربری یا رمز عبور اشتباه است");
       } else if (error.response.data.message === "User already exists") {
         notifications("error", "نام کاربری تکراری است");
+      } else {
+        notifications("ERROR", error);
       }
     },
   });

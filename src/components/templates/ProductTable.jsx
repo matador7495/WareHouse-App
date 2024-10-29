@@ -55,7 +55,9 @@ function ProductTable() {
           {(modalState.type === "add" || modalState.type === "edit") && (
             <ProductFormModal onClose={closeModalHandler} productId={modalState.productId} />
           )}
-          {modalState.type === "delete" && <ConfirmationModal onClose={closeModalHandler} productId={modalState.productId} />}
+          {modalState.type === "delete" && (
+            <ConfirmationModal onClose={closeModalHandler} productId={modalState.productId} setSearch={setSearch} setPagination={setPagination} />
+          )}
         </Modal>
       )}
 
