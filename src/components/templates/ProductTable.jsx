@@ -7,6 +7,7 @@ import { Modal } from "components/Modal/Modal";
 import ProductFormModal from "components/Modal/ProductFormModal";
 import ConfirmationModal from "components/Modal/ConfirmationModal";
 
+import Loader from "components/modules/Loader";
 import styles from "./ProductTable.module.css";
 
 function ProductTable() {
@@ -22,7 +23,7 @@ function ProductTable() {
     page: pagination || undefined,
   };
 
-  const { data: products } = useQuery({
+  const { data: products, isLoading } = useQuery({
     queryKey: ["products", debouncedSearch, pagination],
     queryFn: () => productsQuery.getProducts(parameters),
   });
@@ -73,7 +74,7 @@ function ProductTable() {
           </div>
         </div>
 
-        {<p className={styles.search_error}>{search && search.length < 3 ? "* لطفاً حداقل ۳ کاراکتر وارد کنید." : ""}</p>}
+        <p className={styles.search_error}>{search && search.length < 3 ? "* لطفاً حداقل ۳ کاراکتر وارد کنید." : ""}</p>
 
         <div className={styles.products_header}>
           <div>
@@ -93,19 +94,32 @@ function ProductTable() {
             </tr>
           </thead>
           <tbody>
-            {products?.data.data.map((product) => (
-              <tr key={product.id}>
-                <td>{product.name}</td>
-                <td>{sp(product.quantity)}</td>
-                <td>{sp(product.price)} تومان</td>
-                <td colSpan="2">{e2p(product.id)}</td>
-                <td>
-                  <img src="edit.svg" alt="ویرایش" style={{ marginLeft: "14px" }} onClick={() => openModalHandler("edit", product.id)} />
-                  <img src="trash.svg" alt="حذف" onClick={() => openModalHandler("delete", product.id)} />
+            {isLoading ? (
+              <tr>
+                <td colSpan="6">
+                  <Loader />
                 </td>
               </tr>
-            ))}
-            <tr>{!products?.data.data.length && <td className={styles.no_products}>محصولی یافت نشد</td>}</tr>
+            ) : products?.data.data.length ? (
+              products.data.data.map((product) => (
+                <tr key={product.id}>
+                  <td>{product.name}</td>
+                  <td>{sp(product.quantity)}</td>
+                  <td>{sp(product.price)} تومان</td>
+                  <td colSpan="2">{e2p(product.id)}</td>
+                  <td>
+                    <img src="edit.svg" alt="ویرایش" style={{ marginLeft: "14px" }} onClick={() => openModalHandler("edit", product.id)} />
+                    <img src="trash.svg" alt="حذف" onClick={() => openModalHandler("delete", product.id)} />
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan="6" className={styles.no_products}>
+                  محصولی یافت نشد
+                </td>
+              </tr>
+            )}
           </tbody>
         </table>
       </div>
