@@ -1,6 +1,7 @@
 import toast from "react-hot-toast";
 
 const notifications = (type, msg) => {
+  toast.dismiss();
   switch (type) {
     case "CREATE":
       toast.success("محصول با موفقیت اضافه شد");
